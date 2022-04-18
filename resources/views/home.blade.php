@@ -16,17 +16,29 @@
 
                     <div class="container">
                         <div class="card-body">
-Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo reiciendis perspiciatis maxime delectus exercitationem libero ad, consequuntur iste neque vel soluta quisquam odio, illo eveniet suscipit reprehenderit quaerat! Nulla soluta eum debitis ducimus eligendi sunt cupiditate amet, quos ad saepe, iste mollitia, laboriosam eveniet veritatis. Officia modi similique praesentium velit ducimus inventore asperiores, voluptate rerum sint sequi veritatis repudiandae ex nesciunt doloribus corrupti, error quibusdam. Quos rem alias inventore aliquid voluptatum accusantium eum optio sit quidem ducimus magnam laborum, laboriosam iusto dolor placeat error sint ipsa, quibusdam adipisci recusandae ullam suscipit velit. Voluptate possimus dignissimos facere rem recusandae quisquam harum, iure amet quod! Culpa odit dolor est recusandae aliquam eius delectus nostrum animi sint nam itaque tempora, et ipsum deleniti provident magni exercitationem cumque impedit reprehenderit nemo ducimus facere hic consequuntur ratione. Corrupti pariatur fugit, neque voluptate obcaecati ad quibusdam ea perspiciatis rerum illo veniam impedit debitis laudantium illum necessitatibus adipisci deserunt similique asperiores iusto? Sed vel mollitia dolore vero impedit, dignissimos commodi recusandae esse quae sequi velit facere illum aperiam nostrum soluta aliquid ab odit quasi. Quae odit accusamus cumque, cum quo, numquam doloremque reprehenderit ducimus, magni tenetur sit repudiandae adipisci. Cum natus debitis, deleniti excepturi cupiditate autem laudantium.
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo reiciendis perspiciatis maxime
+                            delectus exercitationem libero ad, consequuntur iste neque vel soluta quisquam odio, illo
+                            eveniet suscipit reprehenderit quaerat! Nulla soluta eum debitis ducimus eligendi sunt
+                            cupiditate amet, quos ad saepe, iste mollitia, laboriosam eveniet veritatis. Officia modi
+                            similique praesentium velit ducimus inventore asperiores, voluptate rerum sint sequi veritatis
+                            repudiandae ex nesciunt doloribus corrupti, error quibusdam. Quos rem alias inventore aliquid
+                            voluptatum accusantium eum optio sit quidem ducimus magnam laborum, laboriosam iusto dolor
+                            placeat error sint ipsa, quibusdam adipisci recusandae ullam suscipit velit. Voluptate possimus
+                            dignissimos facere rem recusandae quisquam harum, iure amet quod! Culpa odit dolor est
+                            recusandae aliquam eius delectus nostrum animi sint nam itaque tempora, et ipsum deleniti
+                            provident magni exercitationem cumque impedit reprehenderit nemo ducimus facere hic consequuntur
+                            ratione. Corrupti pariatur fugit, neque voluptate obcaecati ad quibusdam ea perspiciatis rerum
+                            illo veniam impedit debitis laudantium illum necessitatibus adipisci deserunt similique
+                            asperiores iusto? Sed vel mollitia dolore vero impedit, dignissimos commodi recusandae esse quae
+                            sequi velit facere illum aperiam nostrum soluta aliquid ab odit quasi. Quae odit accusamus
+                            cumque, cum quo, numquam doloremque reprehenderit ducimus, magni tenetur sit repudiandae
+                            adipisci. Cum natus debitis, deleniti excepturi cupiditate autem laudantium.
                         </div>
 
                     </div>
                 </div>
             </div>
         </div>
-        </div>
-
-
-        <!-- Optional JavaScript; choose one of the two! -->
 
         <!-- Option 1: Bootstrap Bundle with Popper -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
@@ -39,17 +51,12 @@ Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo reiciendis perspici
                 integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="
                 crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-        <!-- Option 2: Separate Popper and Bootstrap JS -->
-        <!--
-            <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
-                        integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous">
-            </script>
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
-                        integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous">
-            </script>
-            -->
-        </body>
+
+        <script>
+            @if (Session::has('alert'))
+                toastr.info("{{ Session::get('alert') }} {{ Auth::user()->name }}");
+            @endif
+        </script>
 
     </div>
-    <!-- /.content -->
 @endsection

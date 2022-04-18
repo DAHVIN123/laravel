@@ -36,30 +36,47 @@
 
                 <form action="/registeruser" method="post" enctype="multipart/form-data">
                     @csrf
+                    @error('name')
+                        {{ $message }}
+                    @enderror
                     <div class="input-group mb-3">
-                        <input type="text" name="name" class="form-control" placeholder="Username">
+                        <input type="text" name="name" class="form-control" value="{{ old('name') }}"
+                            placeholder="Username">
                         <div class="input-group-append">
                             <div class="input-group-text">
-                                <span class="fas fa-solid fa-user"></span>
+                                <div class="text-danger">
+                                    <span class="fas fa-solid fa-user"></span>
+
+                                </div>
                             </div>
                         </div>
                     </div>
+                    @error('email')
+                        {{ $message }}
+                    @enderror
                     <div class="input-group mb-3">
-                        <input type="email" name="email" class="form-control" placeholder="Email">
+                        <input type="email" name="email" class="form-control" value="{{ old('email') }}"
+                            placeholder="Email">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-envelope"></span>
                             </div>
                         </div>
                     </div>
+
+                    @error('password')
+                        {{ $message }}
+                    @enderror
                     <div class="input-group mb-3">
-                        <input type="password" name="password" class="form-control" placeholder="Password">
+                        <input type="password" name="password" class="form-control" value="{{ old('password') }}"
+                            placeholder="Password">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-lock"></span>
                             </div>
                         </div>
                     </div>
+
                     <div class="">
                         <div class="col-10">
 

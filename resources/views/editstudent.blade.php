@@ -25,6 +25,11 @@
                                         aria-describedby="emailHelp" value="{{ $data->name }}" required>
                                 </div>
                                 <div class="mb-3">
+                                    <label for="exampleInputEmail1">Email</label>
+                                    <input type="text" name="email" class="form-control" id="exampleInputEmail1"
+                                        aria-describedby="emailHelp" value="{{ $data->email }}" required>
+                                </div>
+                                <div class="mb-3">
                                     <label for="exampleInputPassword1">Gender</label>
                                     <select name="gender" id="" class="form-control validate" required>
                                         <option selected hidden>{{ $data->gender }}</option>
@@ -45,6 +50,11 @@
                                     <label for="exampleInputEmail1">Motto</label>
                                     <input type="text" name="motto" class="form-control" id="exampleInputEmail1"
                                         aria-describedby="emailHelp" value="{{ $data->motto }}" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="exampleInputEmail1">Number_phone</label>
+                                    <input type="text" name="number_phone" class="form-control" id="exampleInputEmail1"
+                                        aria-describedby="emailHelp" value="{{ $data->number_phone }}" required>
                                 </div>
                                 <button type="submit" class="btn btn-primary">Submit</button>
                                 <button type="reset" class="btn btn-danger">Reset</button>

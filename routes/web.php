@@ -21,7 +21,7 @@ route::get('/template', [StudentsController::class, 'template'])->name('');
 
 route::get('/tambahstudent', [StudentsController::class, 'tambahstudent'])->name('tambahstudent')->middleware('auth');
 route::post('/insertdata', [StudentsController::class, 'insertdata'])->name('insertdata')->middleware('auth');
-
+route::get('/modalfilter', [StudentsController::class, 'modalfilter'])->name('modalfilter');
 route::get('/detailstudent/{id}', [StudentsController::class, 'detailstudent'])->name('detailstudent')->middleware('auth');
 route::get('/tampildata/{id}', [StudentsController::class, 'tampildata'])->name('tampildata')->middleware('auth');
 route::post('/updatedata/{id}', [StudentsController::class, 'updatedata'])->name('updatedata')->middleware('auth');

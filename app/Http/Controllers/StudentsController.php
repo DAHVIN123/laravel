@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Students;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class StudentsController extends Controller
 {
@@ -13,8 +14,11 @@ class StudentsController extends Controller
     }
     public function student(Request $request)
     {
+        $category = DB::table('students')
+            ->select("*")
+            ->get();
         if ($request->has('search')) {
-            $data = Students::where('name', 'LIKE', '%' . $request->search . '%')->paginate(5);
+            $data = Students::where('gender', 'LIKE', '%' . $request->search . '%')->paginate(5);
         } else {
             $data = Students::paginate(5);
         }
@@ -31,10 +35,33 @@ class StudentsController extends Controller
     }
     public function tambahstudent()
     {
-        return view('tambahstudent');
+
+
+        return view('welcome');
     }
+    public function modalfilter(Request $request)
+    {
+
+        return view('/modalfilter', compact('data'));
+    }
+
     public function insertdata(Request $request)
     {
+
+        $request->validate(
+            [
+                'name' => 'required',
+                'email' => 'required|unique:students,email|min:15',
+                'gender' => 'required',
+                'address' => 'required',
+                'photo' => 'required',
+                'motto' => 'required',
+                'number_phone' => 'required|unique:students,number_phone',
+            ],
+
+        );
+
+
         $data = Students::create($request->all());
         if ($request->hasFile('photo')) {
             $request->file('photo')->move('photostudent/', $request->file('photo')->getClientOriginalName());

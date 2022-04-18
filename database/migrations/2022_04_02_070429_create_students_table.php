@@ -16,10 +16,12 @@ return new class extends Migration
         Schema::create('students', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('email');
             $table->enum('gender', ['Male', 'Female']);
             $table->text('address');
             $table->string('photo');
             $table->text('motto');
+            $table->string('number_phone');
             $table->timestamps();
         });
     }

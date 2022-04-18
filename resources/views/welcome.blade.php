@@ -26,6 +26,7 @@
         <!-- /.content-header -->
 
         <!-- Main content -->
+
         <div class="container">
             <a href="/tambahstudent" data-toggle="modal" data-target="#exampleModal" class="btn btn-primary mt-3"><i
                     class="bi bi-person-plus-fill"></i> Tambah</a>
@@ -34,8 +35,20 @@
                     <div class="col-5">
                         <input type="search" name="search" class="form-control" id="exampleInputSearch"
                             placeholder="Search">
+                        <form action={{ url('/modalfilter') }} method="get" enctype="multipart/form-data">
+                            <a href="#" class="btn-sm btn-filter">
+                                <select name="modal" id="modal-filter" class="btn btn-sm btn-flat btn-filter mt-3">
+                                    <i class="fa fa-filter">
+                                        <option value="" hidden>Choose Gender</option>
+                                        <option value="" disabled>Choose Gender</option>
+                                        <option value="Male">Male</option>
+                                        <option value="Female">Female</option>
+                                </select>
+                                <button type="submit" class="btn btn-primary mt-3">Submit</button>
+                                </i> </a>
+                        </form>
+
                     </div>
-                </div>
             </form>
             <div class="card">
                 <div class="modal-content">
@@ -45,7 +58,7 @@
                         <div class="row">
                             <!---@if ($message = Session::get('alert'))
     <div class="alert alert-info" role="alert">
-                                                                                                                {{ $message }}
+                                                                                                                                                                                                                                                                                                                                            {{ $message }}
     @endif-->
                         </div>
                         <div class="card-body">
@@ -54,10 +67,12 @@
                                     <tr>
                                         <th scope="col">NO</th>
                                         <th scope="col">Name</th>
+                                        <th scope="col">Email</th>
                                         <th scope="col">Gender</th>
                                         <th scope="col">Address</th>
                                         <th scope="col">Photo</th>
                                         <th scope="col">Motto</th>
+                                        <th scope="col">Number_phone</th>
                                         <th scope="col">Aksi</th>
                                     </tr>
                                 </thead>
@@ -69,6 +84,7 @@
                                         <tr>
                                             <th scope="row">{{ $index + $data->firstItem() }}</th>
                                             <td>{{ $s->name }}</td>
+                                            <td>{{ $s->email }}</td>
                                             <td>{{ $s->gender }}</td>
                                             <td>{{ $s->address }}</td>
                                             <td>
@@ -76,6 +92,9 @@
                                                     style="width: 50px">
                                             </td>
                                             <td>{{ $s->motto }}</td>
+                                            <td>
+                                                {{ $s->number_phone }}
+                                            </td>
                                             <td>
                                                 <a href="{{ route('detailstudent', ['id' => $s->id]) }}"
                                                     class="btn btn-info" }}><i class="bi bi-eye-fill"></i></a>
@@ -110,13 +129,27 @@
                         <form action="/insertdata" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="mb-3">
+                                @error('name')
+                                    {{ $message }}
+                                @enderror
                                 <label for="exampleInputEmail1">Name</label>
                                 <input type="text" name="name" class="form-control" id="exampleInputEmail1"
-                                    aria-describedby="emailHelp" required>
+                                    aria-describedby="emailHelp">
                             </div>
                             <div class="mb-3">
+                                @error('email')
+                                    {{ $message }}
+                                @enderror
+                                <label for="exampleInputEmail1">Email</label>
+                                <input type="text" name="email" class="form-control" id="exampleInputEmail1"
+                                    aria-describedby="emailHelp">
+                            </div>
+                            <div class="mb-3">
+                                @error('gender')
+                                    {{ $message }}
+                                @enderror
                                 <label for="exampleInputPassword1">Gender</label>
-                                <select name="gender" id="" class="form-control validate" required>
+                                <select name="gender" id="" class="form-control validate">
                                     <option value="" hidden>Choose Gender</option>
                                     <option value="" disabled>Choose Gender</option>
                                     <option value="Male">Male</option>
@@ -124,18 +157,35 @@
                                 </select>
                             </div>
                             <div class="mb-3">
+                                @error('address')
+                                    {{ $message }}
+                                @enderror
                                 <label for="exampleInputEmail1">Address</label>
                                 <input type="text" name="address" class="form-control" id="exampleInputEmail1"
-                                    aria-describedby="emailHelp" required>
+                                    aria-describedby="emailHelp">
                             </div>
                             <div class="mb-3">
+                                @error('photo')
+                                    {{ $message }}
+                                @enderror
                                 <label for="exampleInputEmail1" class="form-label">Masukkan Photo</label>
-                                <input type="file" name="photo" class="form-control" required>
+                                <input type="file" name="photo" class="form-control">
                             </div>
                             <div class="mb-3">
+                                @error('motto')
+                                    {{ $message }}
+                                @enderror
                                 <label for="exampleInputEmail1">Motto</label>
                                 <input type="text" name="motto" class="form-control" id="exampleInputEmail1"
-                                    aria-describedby="emailHelp" required>
+                                    aria-describedby="emailHelp">
+                            </div>
+                            <div class="mb-3">
+                                @error('number_phone')
+                                    {{ $message }}
+                                @enderror
+                                <label for="exampleInputEmail1">Number_phone</label>
+                                <input type="text" name="number_phone" class="form-control" id="exampleInputEmail1"
+                                    aria-describedby="emailHelp">
                             </div>
                             <button type="submit" class="btn btn-primary">Submit</button>
                             <button type="reset" class="btn btn-danger">Reset</button>
@@ -145,6 +195,8 @@
             </div>
         </div>
     </div>
+
+
 @endsection
 
 @push('scripts')
@@ -160,13 +212,13 @@
 
     <!-- Option 2: Separate Popper and Bootstrap JS -->
     <!--
-                                                                                        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
-                                                                                                                                                                                crossorigin="anonymous">
-                                                                                        </script>
-                                                                                        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
-                                                                                                                                                                                crossorigin="anonymous">
-                                                                                        </script>
-                                                                                        -->
+                                                                                                                                                                                                                                                                                                                    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        crossorigin="anonymous">
+                                                                                                                                                                                                                                                                                                                    </script>
+                                                                                                                                                                                                                                                                                                                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        crossorigin="anonymous">
+                                                                                                                                                                                                                                                                                                                    </script>
+                                                                                                                                                                                                                                                                                                                    -->
 
     <script>
         $('.delete').click(function() {
@@ -188,9 +240,19 @@
                 });
         });
     </script>
-    <script>
-        @if (Session::has('alert'))
-            toastr.success("{{ Session::get('alert') }}");
-        @endif
-    </script>
-@endpush
+    @section('scripts')
+        <script>
+            @if (Session::has('alert'))
+                toastr.success("{{ Session::get('alert') }}");
+            @endif
+        </script>
+        <script type="text/javascript">
+            $(document).ready(function() {
+
+                $('.btn-filter').click(function(e) {
+                    e.preventDefault();
+                    $('#modal-filter').modal();
+                })
+            })
+        </script>
+    @endpush

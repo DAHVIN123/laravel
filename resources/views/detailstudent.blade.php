@@ -22,6 +22,7 @@
         }
 
     </style>
+
     <div class="content-wrapper">
 
         <!-- Main content -->
@@ -36,6 +37,9 @@
                                     <td>{{ $id->name }}</td>
                                 </tr>
                                 <tr>
+                                    <td>{{ $id->email }}</td>
+                                </tr>
+                                <tr>
                                     <td>{{ $id->gender }}</td>
                                 </tr>
                                 <tr>
@@ -47,6 +51,9 @@
                                 </tr>
                                 <tr>
                                     <td>{{ $id->motto }}</td>
+                                </tr>
+                                <tr>
+                                    <td>{{ $id->number_phone }}</td>
                                 </tr>
                             </table>
                         </div>
